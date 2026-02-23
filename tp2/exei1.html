@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire</title>
+</head>
+<body>
+
+    <form>
+
+   
+        <label for="nom">Entrez votre Nom :</label><br>
+        <input type="text" id="nom" name="nom"><br><br>
+
+ 
+        <label for="prenom">Entrez votre Prénom :</label><br>
+        <input type="text" id="prenom" name="prenom"><br><br>
+
+        <h3>Les listes déroulantes</h3>
+        <label for="communication">Votre niveau de communication :</label>
+        <select id="communication" name="communication">
+            <option value="excellent">Excellent</option>
+            <option value="bon">Bon</option>
+            <option value="moyen">Moyen</option>
+            <option value="faible">Faible</option>
+        </select>
+        <br><br>
+
+    
+        <h3>Les cases à cocher</h3>
+
+        <input type="checkbox" id="sport" name="hobby" value="sport">
+        <label for="sport">Sport</label><br>
+
+        <input type="checkbox" id="internet" name="hobby" value="internet">
+        <label for="internet">Explorer internet</label><br>
+
+        <input type="checkbox" id="lecture" name="hobby" value="lecture">
+        <label for="lecture">Lecture</label><br>
+
+        <input type="checkbox" id="television" name="hobby" value="television">
+        <label for="television">Télévision</label><br><br>
+
+        <h3>Les boutons radios :</h3>
+        <p>Quel est votre niveau en HTML :</p>
+
+        <input type="radio" id="excellent" name="niveau_html" value="excellent">
+        <label for="excellent">Excellent</label>
+
+        <input type="radio" id="moyen" name="niveau_html" value="moyen">
+        <label for="moyen">Moyen</label>
+
+        <input type="radio" id="debutant" name="niveau_html" value="debutant">
+        <label for="debutant">Débutant</label>
+        <br><br>
+
+    
+        <input type="submit" value="Envoyer">
+        <input type="reset" value="Annuler">
+
+    </form>
+
+</body>
+</html>

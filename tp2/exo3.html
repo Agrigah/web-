@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>User Registration Form</title>
+</head>
+<body>
+
+    <h2 align="center">User registration form</h2>
+
+    <form>
+        <table border="1" cellpadding="8" align="center">
+
+           
+            <tr>
+                <td><label for="username">Full Name</label></td>
+                <td><input type="text" id="username" name="username" required></td>
+            </tr>
+
+            <tr>
+                <td><label for="address">Address</label></td>
+                <td>
+                    <textarea id="address" name="address" rows="4" cols="30" required></textarea>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td><label for="email">Email</label></td>
+                <td><input type="email" id="email" name="email" required></td>
+            </tr>
+
+
+            <tr>
+                <td><label for="password">Password</label></td>
+                <td><input type="password" id="password" name="password" required></td>
+            </tr>
+
+
+            <tr>
+                <td><label for="dob">Date of birth</label></td>
+                <td><input type="date" id="dob" name="dob" required></td>
+            </tr>
+
+            <tr>
+                <td>Gender</td>
+                <td>
+                    <input type="radio" id="male" name="gender" value="male" required>
+                    <label for="male">Male</label>
+
+                    <input type="radio" id="female" name="gender" value="female">
+                    <label for="female">Female</label>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Please choose topics of interest</td>
+                <td>
+                    <input type="checkbox" id="fiction" name="interest" value="fiction">
+                    <label for="fiction">Fiction</label><br>
+
+                    <input type="checkbox" id="action" name="interest" value="action">
+                    <label for="action">Action</label><br>
+
+                    <input type="checkbox" id="thriller" name="interest" value="thriller">
+                    <label for="thriller">Thriller</label><br>
+
+                    <input type="checkbox" id="horror" name="interest" value="horror">
+                    <label for="horror">Horror</label><br>
+
+                    <input type="checkbox" id="comedy" name="interest" value="comedy">
+                    <label for="comedy">Comedy</label>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td><label for="hobbies">Select hobbies</label></td>
+                <td>
+                    <select id="hobbies" name="hobbies" size="4" multiple>
+                        <option value="outdoor">Outdoor Sports</option>
+                        <option value="adventure">Adventure Sports</option>
+                        <option value="pop">Pop Music</option>
+                        <option value="rock">Rock Music</option>
+                    </select>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="submit" value="Submit">
+                </td>
+            </tr>
+
+        </table>
+    </form>
+
+</body>
+</html>
