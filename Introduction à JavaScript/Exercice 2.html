@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversion de durées</title>
+
+    <script>
+    function hjms(secondes) {
+
+    let jours = Math.floor(secondes / 86400);
+    secondes = secondes % 86400;
+
+    let heures = Math.floor(secondes / 3600);
+    secondes = secondes % 3600;
+
+    let minutes = Math.floor(secondes / 60);
+    secondes = secondes % 60;
+
+    console.log("Cette durée équivaut à " + jours + " jours " + heures + 
+                " heures " + minutes + " minutes " + secondes + " secondes");
+}
+
+let s = 90000;
+hjms(s);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
