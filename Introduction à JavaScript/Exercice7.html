@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+  // Fonction Raca1 : calcul de la racine carrée approchée
+function Raca1(A) {
+    if (A < 1 || A > 100) {
+        console.log("Erreur : A doit être compris entre 1 et 100");
+        return;
+    }
+
+    let u = A / 2;      // valeur initiale
+    let epsilon = 1e-6; // précision souhaitée
+
+    // Boucle jusqu'à obtenir la précision
+    while (Math.abs(u * u - A) >= epsilon) {
+        u = 0.5 * (u + A / u);
+    }
+
+    console.log(`Pour un nombre A entre 1 et 100 : ${A}`);
+    console.log(`Valeur approchée de la racine carrée = ${u}`);
+}
+
+// Saisie utilisateur
+let A = 4;
+Raca1(A);
+    </script>
+    
+</body>
+</html>

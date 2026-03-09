@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Fibo1 : Calcul du nième terme de Fibonacci
+function Fibo1(n) {
+    if (n === 0) return 0;
+    if (n === 1) return 1;
+    let a = 0, b = 1;
+    for (let i = 2; i <= n; i++) {
+        let temp = b;
+        b = a + b;
+        a = temp;
+    }
+    return b;
+}
+
+// Saisie utilisateur dans la console
+let n = 12;
+console.log(`Le ${n}ème terme de la suite de Fibonacci est ${Fibo1(n)}`);
+
+function Fibo2(val) {
+    let a = 0, b = 1;
+    let n = 1; // rang
+    while (b <= val) {
+        let temp = b;
+        b = a + b;
+        a = temp;
+        n++;
+    }
+    return { terme: b, rang: n };
+}
+
+// Saisie utilisateur dans la console
+let val = 100; // Exemple de valeur
+let resultat = Fibo2(val);
+console.log(`Le premier terme de Fibonacci supérieur à ${val} est ${resultat.terme}, et son rang est ${resultat.rang}`);
+    </script>
+</body>
+</html>
