@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title> Calculatrice Scientifique</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    padding: 30px;
+    background: #fff;
+    color: #000;
+  }
+  h2 {
+    margin-bottom: 16px;
+  }
+  .calc {
+    border: 1px solid #ccc;
+    padding: 12px;
+    display: inline-block;
+    background: #f0f0f0;
+  }
+
+  #ecran {
+    width: 100%;
+    padding: 8px 10px;
+    font-size: 1.3rem;
+    text-align: right;
+    border: 1px solid #aaa;
+    background: #e8e8e8;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+  }
+
+ 
+  .grille {
+    display: grid;
+    grid-template-columns: repeat(7, 60px);
+    gap: 5px;
+  }
+
+  button {
+    padding: 10px 0;
+    font-size: 14px;
+    cursor: pointer;
+    background: #d6d6d6;
+    border: 1px solid #aaa;
+    border-radius: 3px;
+    width: 100%;
+  }
+  button:hover {
+    background: #bfbfbf;
+  }
+  button.op {
+    background: #c8c8c8;
+    font-weight: bold;
+  }
+  button.fn {
+    background: #c0cfe0;
+  }
+  button.eq {
+    background: #4a90d9;
+    color: #fff;
+    font-weight: bold;
+    font-size: 16px;
+  }
+  button.eq:hover {
+    background: #3578c0;
+  }
+  button.clr {
+    background: #e0c0c0;
+  }
+  button.clr:hover {
+    background: #d09090;
+  }
+  button.span2 {
+    grid-column: span 2;
+  }
+</style>
+</head>
+<body>
+  <h2>Exercice 4 : Calculatrice Scientifique</h2>
+
+  <div class="calc">
+    <input type="text" id="ecran" readonly value="0">
+
+    <div class="grille">
+      
+      <button class="fn" onclick="ins('Math.sin(')">sin</button>
+      <button class="fn" onclick="ins('Math.cos(')">cos</button>
+      <button class="fn" onclick="ins('Math.tan(')">tan</button>
+      <button class="fn" onclick="ins('Math.log(')">ln</button>
+      <button class="fn" onclick="ins('Math.log10(')">log</button>
+      <button class="fn" onclick="ins('Math.sqrt(')">√</button>
+      <button class="fn" onclick="ins('Math.pow(base,')">xʸ</button>
+
+      
+      <button class="fn" onclick="ins('Math.PI')">π</button>
+      <button class="fn" onclick="ins('Math.E')">e</button>
+      <button class="fn" onclick="ins('Math.abs(')">|x|</button>
+      <button class="fn" onclick="ins('**2')">x²</button>
+      <button class="fn" onclick="ins('1/(')">1/x</button>
+      <button class="fn" onclick="ins('(')"> ( </button>
+      <button class="fn" onclick="ins(')')"> ) </button>
+
+      
+      <button class="op" onclick="ins('%')">%</button>
+      <button class="clr" onclick="del()">⌫</button>
+      <button class="clr" onclick="ce()">CE</button>
+      <button class="clr" onclick="ac()">AC</button>
+      <button class="op" onclick="ins('/')">÷</button>
+      <button class="op" onclick="ins('*')">×</button>
+      <button class="op" onclick="ins('-')">−</button>
+
+      
+      <button onclick="ins('7')">7</button>
+      <button onclick="ins('8')">8</button>
+      <button onclick="ins('9')">9</button>
+
+    
+      <button class="eq" onclick="ins('+')">+</button>
+      <button onclick="ins('4')">4</button>
+      <button onclick="ins('5')">5</button>
+      <button onclick="ins('6')">6</button>
+
+
+      <button onclick="ins('1')">1</button>
+      <button onclick="ins('2')">2</button>
+      <button onclick="ins('3')">3</button>
+      <button class="eq" onclick="calculer()" style="grid-row: span 2;">=</button>
+
+      <button class="span2" onclick="ins('0')">0</button>
+      <button onclick="ins('.')">.</button>
+    </div>
+  </div>
+
+  <script>
+    var expr = '';
+    var isDeg = true;
+
+    function toRad(x) { return isDeg ? x * Math.PI / 180 : x; }
+
+    function afficher() {
+      var ecran = document.getElementById('ecran');
+      ecran.value = expr === '' ? '0' : expr;
+      ecran.style.color = '#000';
+    }
+
+    function ins(val) {
+      expr += val;
+      afficher();
+    }
+
+    function ac() {
+      expr = '';
+      afficher();
+    }
+
+    function ce() {
+      expr = '';
+      afficher();
+    }
+
+    function del() {
+      expr = expr.slice(0, -1);
+      afficher();
+    }
+
+    function calculer() {
+      try {
+   
+        var calcExpr = expr
+          .replace(/Math\.sin\(/g, isDeg ? 'Math.sin(toRad(' : 'Math.sin(')
+          .replace(/Math\.cos\(/g, isDeg ? 'Math.cos(toRad(' : 'Math.cos(')
+          .replace(/Math\.tan\(/g, isDeg ? 'Math.tan(toRad(' : 'Math.tan(');
+
+        if (isDeg) {
+          calcExpr = calcExpr
+            .replace(/Math\.sin\(toRad\(([^)]+)\)/g, 'Math.sin(toRad($1))')
+            .replace(/Math\.cos\(toRad\(([^)]+)\)/g, 'Math.cos(toRad($1))')
+            .replace(/Math\.tan\(toRad\(([^)]+)\)/g, 'Math.tan(toRad($1))');
+        }
+
+        var resultat = Function('toRad', 'Math', 'return ' + expr)(toRad, Math);
+
+        if (!isFinite(resultat) || isNaN(resultat)) throw new Error('Invalide');
+
+        expr = String(parseFloat(resultat.toFixed(10)));
+        afficher();
+      } catch (e) {
+        document.getElementById('ecran').value = 'Erreur';
+        document.getElementById('ecran').style.color = 'red';
+        expr = '';
+      }
+    }
+
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key >= '0' && e.key <= '9' || e.key === '.') ins(e.key);
+      else if (['+', '-', '*', '/', '(', ')'].indexOf(e.key) !== -1) ins(e.key);
+      else if (e.key === 'Enter' || e.key === '=') calculer();
+      else if (e.key === 'Backspace') del();
+      else if (e.key === 'Escape') ac();
+    });
+  </script>
+</body>
+</html>

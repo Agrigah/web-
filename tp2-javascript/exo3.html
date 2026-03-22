@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Calcul IMC</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    padding: 30px;
+    background: #fff;
+    color: #000;
+  }
+  h2 {
+    margin-bottom: 12px;
+  }
+  .cadre {
+    border: 1px solid #ccc;
+    padding: 24px 28px;
+    display: inline-block;
+    background: #fff;
+    min-width: 300px;
+  }
+  .cadre h3 {
+    font-size: 1.4rem;
+    margin-bottom: 18px;
+    font-weight: bold;
+  }
+  .ligne {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  .ligne label {
+    width: 100px;
+    font-size: 14px;
+  }
+  .ligne input {
+    padding: 4px 8px;
+    width: 120px;
+    border: 1px solid #aaa;
+    font-size: 14px;
+  }
+  button {
+    display: block;
+    margin: 14px 0;
+    padding: 8px 24px;
+    background: #1a8fe3;
+    color: #fff;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 3px;
+  }
+  button:hover {
+    background: #1478c2;
+  }
+  #message {
+    font-size: 14px;
+    margin-top: 6px;
+  }
+</style>
+</head>
+<body>
+  <h2>Exercice 3 : Calcul IMC</h2>
+
+  <div class="cadre">
+    <h3>Calculateur d'IMC</h3>
+
+    <div class="ligne">
+      <label>Poids (kg) :</label>
+      <input type="number" id="poids" placeholder="ex: 76">
+    </div>
+    <div class="ligne">
+      <label>Taille (m) :</label>
+      <input type="number" id="taille" step="0.01" placeholder="ex: 1.75">
+    </div>
+
+    <button onclick="calculerIMC()">Calculer</button>
+
+    <div id="message"></div>
+  </div>
+
+  <script>
+    function calculerIMC() {
+      var poids  = parseFloat(document.getElementById('poids').value);
+      var taille = parseFloat(document.getElementById('taille').value);
+      var msg    = document.getElementById('message');
+
+      if (isNaN(poids) || isNaN(taille) || poids <= 0 || taille <= 0) {
+        msg.textContent = 'Veuillez saisir des valeurs valides.';
+        return;
+      }
+
+      var imc = poids / (taille * taille);
+      var cat;
+
+      if      (imc < 18.5) cat = 'en état d\'insuffisance pondérale (maigreur).';
+      else if (imc < 25)   cat = 'en corpulence normale.';
+      else if (imc < 30)   cat = 'en surpoids.';
+      else if (imc < 35)   cat = 'en état d\'obésité modérée.';
+      else if (imc < 40)   cat = 'en état d\'obésité sévère.';
+      else                 cat = 'en état d\'obésité morbide ou massive.';
+
+      msg.textContent = 'Votre IMC est de ' + imc.toFixed(2) + '. Vous êtes ' + cat;
+    }
+  </script>
+</body>
+</html>
